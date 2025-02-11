@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>סיכום הרצאה 01 - מבוא לאוריינות מידע</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    /* --- CSS Variables (Custom Properties) for Theme --- */
+    :root {
+      --primary-blue: #003366;
+      --light-blue-background: #e6f7ff;
+      --light-gray-background: #f8f9fa;
+      --body-font: 'Heebo', sans-serif;
+      --heading-font: 'Heebo', sans-serif;
+      --text-color-dark: #333333;
+      --text-color-muted: #6c757d;
+      --강조색-red: #990000;
+    }
+
+    /* Body with slightly less top padding so content isn’t overly pushed down */
+    body {
+      font-family: var(--body-font);
+      font-size: 17px;
+      line-height: 1.5;
+      background-color: var(--light-gray-background);
+      color: var(--text-color-dark);
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--heading-font);
+      font-weight: 500;
+      color: var(--primary-blue);
+      margin-bottom: 0.5rem;
+    }
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    h3 { font-size: 1.5rem; }
+    .text-muted { color: var(--text-color-muted); }
+    .important { font-weight: bold; color: var(--강조색-red); }
+    
+    img {
+        width:50%;
+        height:auto;
+        box-shadow: 9px 10px var(--primary-blue);
+    }
+    /* --- Top Navbar Styles --- */
+    .navbar {
+      background-color: var(--primary-blue);
+      padding-top: 0.6rem;
+      padding-bottom: 0.6rem;
+    }
+    .navbar-brand {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #ffffff !important;
+    }
+    .navbar-nav .nav-link {
+      color: rgba(255,255,255,0.8);
+      transition: color 0.2s ease;
+      padding-left: 0.9rem;
+      padding-right: 0.9rem;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #ffffff;
+    }
+    .navbar-toggler {
+      border: none;
+      padding: 0.2rem 0.4rem;
+    }
+    .navbar-toggler:focus {
+      outline: none;
+      box-shadow: none;
+    }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* --- Mobile Navbar Collapse Styles --- */
+    @media (max-width: 767.98px) {
+      .navbar-collapse {
+        background-color: rgba(0,51,102,0.95);
+        padding: 0.5rem 0; /* reduced padding */
+        border-radius: 0.5rem;
+        margin-top: 0.4rem;
+        text-align: center;
+        max-height: 400px;
+        overflow-y: auto;
+      }
+      .navbar-collapse .navbar-nav {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        padding: 0;
+        margin: 0; /* remove any left margin */
+      }
+      .navbar-collapse .nav-item,
+      .navbar-collapse .nav-link {
+        margin: 0;
+        padding: 0.5rem; /* trimmed padding */
+      }
+      /* Force the very last item into column 3 (right aligned) */
+      .navbar-collapse .navbar-nav li:last-child {
+        grid-column: 3;
+      }
+      .navbar-nav .nav-link:hover {
+        background-color: rgba(255,255,255,0.15);
+      }
+    }
+
+    /* --- Top Alert --- */
+    .top-alert {
+      background-color: var(--light-blue-background);
+      border: 1px solid #b3e0ff;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      color: #004080;
+    }
+    .top-alert strong { color: var(--primary-blue); }
+    #submission-date { font-weight: bold; color: var(--강조색-red); }
+
+    .container {
+      max-width: 960px;
+      margin-top: 3.5rem;
+      margin-bottom: 2rem;
+      padding-left: 1.2rem;
+      padding-right: 1.2rem;
+    }
+    .alert-info, .alert-warning {
+      border-radius: 0.5rem;
+      padding: 1rem;
+    }
+    .alert-warning { text-align: center; }
+    .img-fluid {
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      display: block;
+      margin: 0 auto 1rem;
+    }
+    .simple-list {
+      list-style: disc;
+      margin-left: 1.5rem;
+      padding-left: 0;
+    }
+    .simple-list li { margin-bottom: 0.3rem; }
+    .section-content { margin-bottom: 1.5rem; }
+
+    /* --- Desktop Sidebar (Sticky) --- */
+    @media (min-width: 768px) {
+      .desktop-sidebar-nav {
+        position: sticky;
+        top: 4rem;
+        height: calc(100vh - 4rem);
+        overflow-y: auto;
+        background-color: var(--light-gray-background);
+        border-right: 1px solid #dee2e6;
+        padding: 1rem;
+        box-sizing: border-box;
+        width: 250px;
+        margin-right: 1.5rem;
+        word-wrap: break-word;
+      }
+    }
+    .desktop-sidebar-nav .nav-link {
+      color: var(--primary-blue);
+      display: block;
+      padding: 0.4rem 0;
+      margin-bottom: 0.1rem;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .desktop-sidebar-nav .nav-link:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+    .desktop-sidebar-nav .nav-link.active {
+      font-weight: bold;
+      color: var(--primary-blue);
+      background-color: #e0f0ff;
+      border-right: 3px solid var(--primary-blue);
+    }
+
+    /* --- Mobile Bottom Navigation --- */
+    .mobile-bottom-nav {
+      background-color: #f8f9fa;
+      border-top: 1px solid #dee2e6;
+      box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+      padding-top: 0.4rem;
+      padding-bottom: 0.4rem;
+    }
+    .mobile-bottom-nav .nav-link {
+      color: var(--primary-blue);
+      text-align: center;
+      padding: 0.4rem;
+      font-size: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .mobile-bottom-nav .nav-link i {
+      font-size: 1.1rem;
+      margin-bottom: 0.15rem;
+    }
+    .mobile-bottom-nav .nav-link.active {
+      color: #007bff;
+      font-weight: bold;
+    }
+    @media (min-width: 768px) {
+      .mobile-bottom-nav { display: none; }
+    }
+
+    /* --- Offcanvas Mobile Sections --- */
+    .offcanvas {
+      background-color: var(--light-gray-background);
+    }
+    .offcanvas-header {
+      color: var(--primary-blue);
+      font-weight: 500;
+      border-bottom: 1px solid #dee2e6;
+      padding: 0.6rem 1rem;
+    }
+    .offcanvas-title { font-size: 1.1rem; }
+    .offcanvas-body {
+      padding-top: 0.6rem;
+      padding-bottom: 0.6rem;
+    }
+    .offcanvas-body .nav-item { margin-bottom: 0; }
+    .offcanvas-body .nav-link {
+      color: var(--primary-blue);
+      display: block;
+      padding: 0.4rem 1rem;
+      border-bottom: 1px solid #dee2e6;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .offcanvas-body .nav-link:hover { background-color: #e9ecef; }
+    .offcanvas-body .nav-item:last-child .nav-link { border-bottom: none; }
+
+    @media (max-width: 575.98px) {
+      body { font-size: 16px; }
+      .mobile-bottom-nav .nav-link { font-size: 0.75rem; }
+    }
+  </style>
+
+</head>
+<body>
+  <!-- Top Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">אוריינות מידע</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="information_literacy_1.html">שיעור 1</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_2.html">שיעור 2</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_3.html">שיעור 3</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_4.html">שיעור 4</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_5.html">שיעור 5</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_6.html">שיעור 6</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_7.html">שיעור 7</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_8.html">שיעור 8</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_9.html">שיעור 9</a></li>
+          <li class="nav-item"><a class="nav-link" href="avodat_siyum.html">עבודת סיום</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Top Alert and Main Content -->
+
+  <div class="container mt-5">
+    <div class="top-alert">
+      <p><strong>מרצה:</strong> ד"ר קרן טאוב (<a href="mailto:keren.taub@biu.ac.il">keren.taub@biu.ac.il</a>)</p>
+      <p><strong>סוג הקורס:</strong> מתוקשב (א-סינכרוני)</p>
+      <p><strong>הרכב הציון:</strong> 100% עבודת סיום</p>
+      <p><strong>דגש:</strong> קצב למידה עצמאי – דורש אחריות אישית!</p>
+    </div>
+    <div class="alert alert-warning" role="alert">
+      <h4 class="alert-heading">עבודת סיום!</h4>
+      <p>שימו לב לתאריך ההגשה: <span id="submission-date">12.3.2025</span> בשעה <time>23:59</time>.</p>
+      <hr>
+      <p>יש להגיש בזוגות/שלשות/רבעיות/חמישיות, <a href="avodat_siyum.html">פרטים נוספים</a></p>
+    </div>
+
+<div class="row">
+  <div class="col-md-8">
+    <h1>סיכום הרצאה 01 - מבוא לאוריינות מידע</h1>
+    <img src="image1.jpg" alt="איך צורכים מידע?" class="img-fluid">
+    <p>‎⁨הרצאה 01 - מבוא לאוריינות מידע⁩:</p>
+    <p>היי לכולם, מה נשמע? אני קרן, נעים להכיר וברוכים הבאים לקורס אוריינות מידע. הקורס הזה הוא קורס מתוקשב, כלומר ניפגש מרחוק באמצעות סרטונים. הסרטון הזה נועד להסביר כיצד יפעל הקורס, מהו המושג "אוריינות מידע" והמטרות שלנו.</p>
+
+    <h2 id="section1">מהי אוריינות מידע?</h2>
+    <div class="section-content">
+      <p>קרן הגדירה אוריינות מידע כיכולת לענות על שאלות הקשורות לצריכת מידע:</p>
+      <ul class="simple-list">
+        <li>"מה המידע שאנחנו מחפשים?"</li>
+        <li>"איפה נמצא את המידע הדרוש לנו?"</li>
+        <li>"מה משמעות המידע? איך נכון להבין אותו?"</li>
+        <li>"איך נכון להציג ולהפיץ את המידע?"</li>
+      </ul>
+      <p>במילים אחרות, אוריינות מידע היא היכולת לצרוך מידע באופן <span class="important">ממוקד, אחראי וביקורתי</span>.</p>
+    </div>
+
+    <h2 id="section2">מטרות הקורס</h2>
+    <div class="section-content">
+      <p>קרן פירטה את המטרות הכלליות של לימוד אוריינות מידע, כולל דרישות לעבודת הסיום:</p>
+      <ul class="simple-list">
+        <li>שיפור מיומנויות דיגיטליות.</li>
+        <li>פיתוח היכולת למצוא ולצרוך מידע באופן עצמאי.</li>
+        <li>פיתוח חשיבה ביקורתית ופתרון בעיות בעבודה עם מידע.</li>
+        <li><span class="important">יישום מעשי:</span> ניתוח שינויים בתחום נבחר בעידן הדיגיטלי, תוך שימוש במקורות אקדמיים וציטוטם על פי כללי APA.</li>
+        <li><span class="important">שיתוף פעולה:</span> עבודת צוות בזוגות, שלשות או רבעיות.</li>
+        <li>עמידה בזמנים: הגשת העבודה עד ה-12.3.2025</li>
+      </ul>
+      <p>למידע נוסף על עבודת הסיום, בקרו ב-<a href="avodat_siyum.html">עמוד עבודת הסיום</a>.</p>
+    </div>
+
+    <h2 id="section3">נושאי הקורס</h2>
+    <div class="section-content">
+      <p>במהלך הקורס ילמדו הנושאים הבאים:</p>
+      <ul class="simple-list">
+        <li>איך בני אדם צורכים מידע?</li>
+        <li>הערכת מידע באופן מושכל.</li>
+        <li>חשיבה ביקורתית.</li>
+        <li>אוריינות מידע בעידן הדיגיטלי ומהפכת הבינה המלאכותית.</li>
+        <li>אוריינות מידע בעולם האקדמיה והגישה המדעית.</li>
+        <li>מבנה המאמר המדעי.</li>
+        <li>כללי ציטוט מקובלים.</li>
+      </ul>
+    </div>
+
+    <h2 id="section4">מיומנויות אקדמיות</h2>
+    <div class="section-content">
+      <p>קרן הדגישה את החשיבות של פיתוח מיומנויות אקדמיות, כגון:</p>
+      <ul class="simple-list">
+        <li>הטלת ספק וביקורתיות.</li>
+        <li>פיתוח כישורים חדשים.</li>
+        <li>ניהול זמן ואחריות אישית.</li>
+      </ul>
+      <img src="image2.jpg" alt="מיומנויות אקדמיות" class="img-fluid">
+      <p>המעבר מבית הספר לאקדמיה דורש מהסטודנטים להפגין עצמאות, חשיבה ביקורתית והטלת ספק.</p>
+    </div>
+
+    <h2 id="section5">האינטרנט וחיי היומיום</h2>
+    <div class="section-content">
+      <p>קרן הזמינה את הסטודנטים לחשוב על משמעות האינטרנט בחייהם, וביקשה מהם להשלים את המשפט: "בלי אינטרנט בשנתיים האחרונות, לא הייתי...".</p>
+    </div>
+
+    <h2 id="section6">השימושים הנפוצים ביותר באינטרנט</h2>
+    <div class="section-content">
+      <p>קרן הציגה נתונים מתוך דו"ח של "דאטה פורטל" משנת 2023, המפרט את השימושים העיקריים של אנשים באינטרנט:</p>
+      <ul class="simple-list">
+        <li>מציאת מידע (במקום הראשון!).</li>
+        <li>שמירת קשר עם חברים ומשפחה.</li>
+        <li>התעדכנות באירועים חדשותיים.</li>
+        <li>צפייה בסרטים ובסדרות.</li>
+        <li>מחקר עצמאי על איך לעשות דברים.</li>
+        <li>ועוד...</li>
+      </ul>
+    </div>
+
+    <h2 id="section7">התלות במידע</h2>
+    <div class="section-content">
+      <p>קרן הדגימה את התלות שלנו באינטרנט ובמידע דרך דוגמאות מחיי היומיום, כגון מצבים שבהם אין קליטה סלולרית או תקלה ברשתות החברתיות.</p>
+    </div>
+
+    <h2 id="section8">סוגי אוריינות מידע</h2>
+    <div class="section-content">
+      <p>קרן הסבירה כי אוריינות מידע הוא מושג רחב שניתן לחלק לתתי-סוגים:</p>
+      <ul class="simple-list">
+        <li>אוריינות מידע פוליטית.</li>
+        <li>אוריינות מידע בריאותית.</li>
+        <li>אוריינות מידע תקשורתית.</li>
+        <li>אוריינות מידע אקדמית.</li>
+        <li>ועוד...</li>
+      </ul>
+      <div class="alert alert-info">
+        <strong>דוגמה:</strong> אוריינות מידע בריאותית מתייחסת ליכולת להשיג, להבין ולהשתמש במידע בריאותי רלוונטי, כדי לקבל החלטות מושכלות.
+      </div>
+    </div>
+
+    <h2 id="section9">עקרונות אוריינות מידע</h2>
+    <div class="section-content">
+      <p>לסיכום, קרן הדגישה כי אוריינות מידע מבוססת על עקרונות:</p>
+      <ul class="simple-list">
+        <li>שימוש נכון במקורות מידע.</li>
+        <li>יכולת חיפוש ובחירת מידע אמין ורלוונטי.</li>
+        <li>הפעלת חשיבה ביקורתית והערכה של המידע.</li>
+        <li>יכולת לתקשר את המידע בצורה אפקטיבית.</li>
+      </ul>
+    </div>
+
+    <h2 id="section10">לסיכום</h2>
+    <div class="section-content">
+      <p>ההרצאה הציגה את המושג "אוריינות מידע", את חשיבותו בעידן הדיגיטלי, ואת המטרות והנושאים שיילמדו בקורס. קרן הדגישה את הצורך בפיתוח חשיבה ביקורתית, עצמאות ואחריות אישית בלמידה, ואת התפקיד המרכזי של האינטרנט בחיינו.</p>
+    </div>
+  </div>
+
+  <!-- Desktop Sidebar (Sticky) -->
+  <aside class="col-md-4">
+    <nav class="desktop-sidebar-nav" aria-label="Sidebar Navigation">
+      <h5 class="card-title">ניווט</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item"><a class="nav-link" href="#top">לראש העמוד</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section1">מהי אוריינות מידע?</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section2">מטרות הקורס</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section3">נושאי הקורס</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section4">מיומנויות אקדמיות</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section5">האינטרנט וחיי היומיום</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section6">השימושים הנפוצים ביותר באינטרנט</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section7">התלות במידע</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section8">סוגי אוריינות מידע</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section9">עקרונות אוריינות מידע</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section10">לסיכום</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Mobile Bottom Navigation -->
+
+  <nav class="navbar fixed-bottom mobile-bottom-nav">
+    <div class="container-fluid">
+      <div class="row w-100 justify-content-around align-items-center gx-0">
+        <div class="col-4">
+          <a class="nav-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#mobile-sections-offcanvas" id="nav-sections">
+            <i class="bi bi-list-ul"></i>
+            <span class="nav-label">תוכן</span>
+          </a>
+        </div>
+        <div class="col-4">
+          <a class="nav-link active" href="#" id="nav-home">
+            <i class="bi bi-house-door-fill"></i>
+            <span class="nav-label">ראשי</span>
+          </a>
+        </div>
+        <div class="col-4">
+          <a class="nav-link" href="avodat_siyum.html" id="nav-final-project">
+            <i class="bi bi-mortarboard-fill"></i>
+            <span class="nav-label">עבודת סיום</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Sections Offcanvas -->
+
+  <div class="offcanvas offcanvas-bottom" tabindex="-1" id="mobile-sections-offcanvas" aria-labelledby="mobile-sections-label">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="mobile-sections-label">תוכן עניינים</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="nav flex-column">
+        <li class="nav-item"><a class="nav-link" href="#section1">מהי אוריינות מידע?</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section2">מטרות הקורס</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section3">נושאי הקורס</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section4">מיומנויות אקדמיות</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section5">האינטרנט וחיי היומיום</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section6">השימושים הנפוצים ביותר באינטרנט</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section7">התלות במידע</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section8">סוגי אוריינות מידע</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section9">עקרונות אוריינות מידע</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section10">לסיכום</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle (includes Popper) -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Mobile Bottom Navigation functionality
+      const bottomNavLinks = document.querySelectorAll('.mobile-bottom-nav .nav-link');
+      const sectionsOffcanvas = new bootstrap.Offcanvas(document.getElementById('mobile-sections-offcanvas'));
+      bottomNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          if (!this.hasAttribute('data-bs-toggle')) e.preventDefault();
+          bottomNavLinks.forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+          if (this.id === 'nav-home') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            sectionsOffcanvas.hide();
+          }
+        });
+      });
+
+      // Top Navbar scroll shadow effect
+      const topNav = document.querySelector('.navbar');
+      window.addEventListener('scroll', () => {
+        topNav.style.boxShadow = window.pageYOffset > 20 ? '0 2px 8px rgba(0,0,0,0.1)' : 'none';
+      });
+
+      // Close offcanvas when a section link is clicked
+      const offcanvasLinks = document.querySelectorAll('.offcanvas-body .nav-link');
+      offcanvasLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          sectionsOffcanvas.hide();
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
