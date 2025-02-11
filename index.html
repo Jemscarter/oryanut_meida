@@ -250,6 +250,16 @@
       body { font-size: 16px; }
       .mobile-bottom-nav .nav-link { font-size: 0.75rem; }
     }
+      /* New Style for the Lecture Title */
+    .lecture-title {
+        font-size: 1.25rem; /* Smaller than h2, larger than regular text */
+        font-weight: bold;
+        color: var(--primary-blue); /* Use your primary blue color */
+        margin-bottom: 0.5rem; /* Space below the title */
+        border-bottom: 2px solid var(--primary-blue); /* Add a bottom border */
+        padding-bottom: 0.25rem; /* Space between text and border */
+        display: inline-block; /* So the border only spans the text width */
+    }
   </style>
 
 </head>
@@ -299,7 +309,8 @@
   <div class="col-md-8">
     <h1>סיכום הרצאה 01 - מבוא לאוריינות מידע</h1>
     <img src="Image1.jpg" alt="איך צורכים מידע?" class="img-fluid">
-    <p>‎⁨הרצאה 01 - מבוא לאוריינות מידע⁩:</p>
+    <!-- Changed this line -->
+    <p class="lecture-title">הרצאה 01 - מבוא לאוריינות מידע</p>
     <p>היי לכולם, מה נשמע? אני קרן, נעים להכיר וברוכים הבאים לקורס אוריינות מידע. הקורס הזה הוא קורס מתוקשב, כלומר ניפגש מרחוק באמצעות סרטונים. הסרטון הזה נועד להסביר כיצד יפעל הקורס, מהו המושג "אוריינות מידע" והמטרות שלנו.</p>
 
     <h2 id="section1">מהי אוריינות מידע?</h2>
@@ -371,10 +382,18 @@
         <li>ועוד...</li>
       </ul>
     </div>
-
+    
     <h2 id="section7">התלות במידע</h2>
     <div class="section-content">
       <p>קרן הדגימה את התלות שלנו באינטרנט ובמידע דרך דוגמאות מחיי היומיום, כגון מצבים שבהם אין קליטה סלולרית או תקלה ברשתות החברתיות.</p>
+      <div class="alert alert-info">
+        <strong>דוגמאות:</strong>
+        <ul class="simple-list">
+            <li>ניווט באמצעות אפליקציית ווייז: מה קורה כשהאפליקציה לא עובדת?</li>
+            <li>תשלום באמצעות אפליקציות תשלום: מה עושים כשהאינטרנט לא זמין?</li>
+            <li>תקשורת עם חברים ומשפחה באמצעות וואטסאפ: איך מתמודדים עם תקלה באפליקציה?</li>
+        </ul>
+      </div>
     </div>
 
     <h2 id="section8">סוגי אוריינות מידע</h2>
@@ -483,23 +502,25 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // Mobile Bottom Navigation functionality
-      const bottomNavLinks = document.querySelectorAll('.mobile-bottom-nav .nav-link');
-      const sectionsOffcanvas = new bootstrap.Offcanvas(document.getElementById('mobile-sections-offcanvas'));
-      bottomNavLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-          if (!this.hasAttribute('data-bs-toggle')) e.preventDefault();
-          bottomNavLinks.forEach(l => l.classList.remove('active'));
-          this.classList.add('active');
-          if (this.id === 'nav-home') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            sectionsOffcanvas.hide();
-          }
+  <script>       document.addEventListener("DOMContentLoaded", function () {
+    // Mobile Bottom Navigation functionality
+    const bottomNavLinks = document.querySelectorAll('.mobile-bottom-nav .nav-link');
+    const sectionsOffcanvas = new bootstrap.Offcanvas(document.getElementById('mobile-sections-offcanvas'));
+    bottomNavLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            if (!this.hasAttribute('data-bs-toggle')) e.preventDefault();
+            bottomNavLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+            if (this.id === 'nav-home') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                sectionsOffcanvas.hide();
+            }
+             // Fix for avodat_siyum.html link
+            if (this.id === 'nav-final-project') {
+                window.location.href = 'avodat_siyum.html'; // Directly navigate
+            }
         });
-      });
-
+    });
       // Top Navbar scroll shadow effect
       const topNav = document.querySelector('.navbar');
       window.addEventListener('scroll', () => {
