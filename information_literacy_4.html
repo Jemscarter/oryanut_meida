@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>בקרוב - אוריינות מידע</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    /* --- CSS Variables (Custom Properties) for Theme --- */
+    :root {
+      --primary-blue: #003366;
+      --light-blue-background: #e6f7ff;
+      --light-gray-background: #f8f9fa;
+      --body-font: 'Heebo', sans-serif;
+      --heading-font: 'Heebo', sans-serif;
+      --text-color-dark: #333333;
+      --text-color-muted: #6c757d;
+      --coming-soon-orange: #ff8c00; /* A nice orange for "Coming Soon" */
+    }
+
+    /* Body with slightly less top padding so content isn’t overly pushed down */
+    body {
+      font-family: var(--body-font);
+      font-size: 17px;
+      line-height: 1.5;
+      background-color: var(--light-gray-background);
+      color: var(--text-color-dark);
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--heading-font);
+      font-weight: 500;
+      color: var(--primary-blue);
+      margin-bottom: 0.5rem;
+    }
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    h3 { font-size: 1.5rem; }
+    .text-muted { color: var(--text-color-muted); }
+    .coming-soon {
+        color: var(--coming-soon-orange);
+        font-weight: bold;
+    }
+
+    /* --- Top Navbar Styles --- */
+    .navbar {
+      background-color: var(--primary-blue);
+      padding-top: 0.6rem;
+      padding-bottom: 0.6rem;
+    }
+    .navbar-brand {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #ffffff !important;
+    }
+    .navbar-nav .nav-link {
+      color: rgba(255,255,255,0.8);
+      transition: color 0.2s ease;
+      padding-left: 0.9rem;
+      padding-right: 0.9rem;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #ffffff;
+    }
+    .navbar-toggler {
+      border: none;
+      padding: 0.2rem 0.4rem;
+    }
+    .navbar-toggler:focus {
+      outline: none;
+      box-shadow: none;
+    }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* --- Mobile Navbar Collapse Styles --- */
+    @media (max-width: 767.98px) {
+      .navbar-collapse {
+        background-color: rgba(0,51,102,0.95);
+        padding: 0.5rem 0;
+        border-radius: 0.5rem;
+        margin-top: 0.4rem;
+        text-align: center;
+        max-height: 400px;
+        overflow-y: auto;
+      }
+      .navbar-collapse .navbar-nav {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        padding: 0;
+        margin: 0;
+      }
+      .navbar-collapse .nav-item,
+      .navbar-collapse .nav-link {
+          margin:0;
+          padding: 0.5rem;
+      }
+      /* Force the last item to column 3 */
+      .navbar-collapse .navbar-nav li:last-child {
+          grid-column: 3;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: rgba(255,255,255,0.15);
+      }
+    }
+
+      /* --- CENTERED CONTENT --- */
+    .coming-soon-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100vh - 120px); /* Adjust for navbar and potential footer */
+        text-align: center;
+    }
+
+    .coming-soon-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        color: var(--primary-blue)
+    }
+
+    /* --- Mobile Bottom Navigation (Hidden on larger screens)--- */
+    .mobile-bottom-nav {
+        background-color: #f8f9fa;
+        border-top: 1px solid #dee2e6;
+        box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
+    }
+
+    .mobile-bottom-nav .nav-link{
+        color: var(--primary-blue);
+        text-align: center;
+        padding: 0.4rem;
+        font-size: .8rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+    }
+    .mobile-bottom-nav .nav-link i{
+        font-size: 1.1rem;
+        margin-bottom: .15rem;
+    }
+
+    .mobile-bottom-nav .nav-link.active{
+        color: #007bff;
+        font-weight: bold;
+    }
+    @media (min-width: 768px) {
+        .mobile-bottom-nav { display: none; }
+    }
+
+    @media (max-width: 575.98px){
+        body{ font-size: 16px;}
+        .mobile-bottom-nav .nav-link{ font-size: .75rem;}
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Top Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">אוריינות מידע</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="information_literacy_1.html">שיעור 1</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_2.html">שיעור 2</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_3.html">שיעור 3</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_4.html">שיעור 4</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_5.html">שיעור 5</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_6.html">שיעור 6</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_7.html">שיעור 7</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_8.html">שיעור 8</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_9.html">שיעור 9</a></li>
+          <li class="nav-item"><a class="nav-link" href="avodat_siyum.html">עבודת סיום</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Coming Soon Content -->
+  <div class="coming-soon-container">
+    <i class="bi bi-clock-history coming-soon-icon"></i>
+    <h1>בקרוב!</h1>
+    <p class="lead">התוכן של שיעור זה עדיין בפיתוח.</p>
+      <p class="coming-soon">אנא חזרו בקרוב.</p>
+  </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="navbar fixed-bottom mobile-bottom-nav">
+        <div class="container-fluid">
+            <div class="row w-100 justify-content-around align-items-center gx-0">
+                <div class="col-4">
+                    <a class="nav-link" href="#" data-bs-toggle="offcanvas"
+                       data-bs-target="#mobile-sections-offcanvas"
+                       id="nav-sections">
+                        <i class="bi bi-list-ul"></i>
+                        <span class="nav-label">תוכן</span>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a class="nav-link active" href="#" id="nav-home">
+                        <i class="bi bi-house-door-fill"></i>
+                        <span class="nav-label">ראשי</span>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a class="nav-link" href="avodat_siyum.html" id="nav-final-project">
+                        <i class="bi bi-mortarboard-fill"></i>
+                        <span class="nav-label">עבודת סיום</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+      <!-- Mobile Sections Offcanvas (Hidden by default, will open with JS)-->
+      <div class="offcanvas offcanvas-bottom" tabindex="-1" id="mobile-sections-offcanvas"
+           aria-labelledby="mobile-sections-label">
+          <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="mobile-sections-label">תוכן עניינים</h5>
+              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                      aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+              <ul class="nav flex-column">
+                 <!--Offcanvas Nav Links (empty for coming-soon page)-->
+              </ul>
+          </div>
+      </div>
+
+  <!-- Bootstrap JS Bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Mobile Bottom Navigation functionality
+      const bottomNavLinks = document.querySelectorAll('.mobile-bottom-nav .nav-link');
+      const sectionsOffcanvas = new bootstrap.Offcanvas(document.getElementById('mobile-sections-offcanvas'));
+
+      bottomNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          if (!this.hasAttribute('data-bs-toggle')) e.preventDefault(); // Prevent default if no toggle
+          bottomNavLinks.forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+
+            if(this.id === 'nav-home'){
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                sectionsOffcanvas.hide(); // Hide offcanvas on Home click
+            }
+
+        });
+      });
+
+        // Top Navbar scroll shadow effect
+        const topNav = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            topNav.style.boxShadow = (window.pageYOffset > 20) ? '0 2px 8px rgba(0,0,0,0.1)' : 'none';
+        });
+
+        // Close offcanvas menu when any link inside is clicked.
+        const offcanvasLinks = document.querySelectorAll('.offcanvas-body .nav-link');
+        offcanvasLinks.forEach( link => {
+            link.addEventListener('click', () => {
+                sectionsOffcanvas.hide();
+            })
+        })
+    });
+  </script>
+</body>
+</html>

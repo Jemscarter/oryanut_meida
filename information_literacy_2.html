@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>סיכום הרצאה 02 - צריכת מידע</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    /* --- CSS Variables (Custom Properties) for Theme --- */
+    :root {
+      --primary-blue: #003366;
+      --light-blue-background: #e6f7ff;
+      --light-gray-background: #f8f9fa;
+      --body-font: 'Heebo', sans-serif;
+      --heading-font: 'Heebo', sans-serif;
+      --text-color-dark: #333333;
+      --text-color-muted: #6c757d;
+      --강조색-red: #990000;
+    }
+
+    /* Body with slightly less top padding so content isn’t overly pushed down */
+    body {
+      font-family: var(--body-font);
+      font-size: 17px;
+      line-height: 1.5;
+      background-color: var(--light-gray-background);
+      color: var(--text-color-dark);
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--heading-font);
+      font-weight: 500;
+      color: var(--primary-blue);
+      margin-bottom: 0.5rem;
+    }
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    h3 { font-size: 1.5rem; }
+    .text-muted { color: var(--text-color-muted); }
+    .important { font-weight: bold; color: var(--강조색-red); }
+
+    /* --- Top Navbar Styles --- */
+    .navbar {
+      background-color: var(--primary-blue);
+      padding-top: 0.6rem;
+      padding-bottom: 0.6rem;
+    }
+    .navbar-brand {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #ffffff !important;
+    }
+    .navbar-nav .nav-link {
+      color: rgba(255,255,255,0.8);
+      transition: color 0.2s ease;
+      padding-left: 0.9rem;
+      padding-right: 0.9rem;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #ffffff;
+    }
+    .navbar-toggler {
+      border: none;
+      padding: 0.2rem 0.4rem;
+    }
+    .navbar-toggler:focus {
+      outline: none;
+      box-shadow: none;
+    }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* --- Mobile Navbar Collapse Styles --- */
+    @media (max-width: 767.98px) {
+      .navbar-collapse {
+        background-color: rgba(0,51,102,0.95);
+        padding: 0.5rem 0; /* reduced padding */
+        border-radius: 0.5rem;
+        margin-top: 0.4rem;
+        text-align: center;
+        max-height: 400px;
+        overflow-y: auto;
+      }
+      .navbar-collapse .navbar-nav {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        padding: 0;
+        margin: 0; /* remove any left margin */
+      }
+      .navbar-collapse .nav-item,
+      .navbar-collapse .nav-link {
+        margin: 0;
+        padding: 0.5rem; /* trimmed padding */
+      }
+      /* Force the very last item into column 3 (right aligned) */
+      .navbar-collapse .navbar-nav li:last-child {
+        grid-column: 3;
+      }
+      .navbar-nav .nav-link:hover {
+        background-color: rgba(255,255,255,0.15);
+      }
+    }
+
+
+
+    .container {
+      max-width: 960px;
+      margin-top: 3.5rem;
+      margin-bottom: 2rem;
+      padding-left: 1.2rem;
+      padding-right: 1.2rem;
+    }
+    .alert-info, .alert-warning {
+      border-radius: 0.5rem;
+      padding: 1rem;
+    }
+    .alert-warning { text-align: center; }
+    .img-fluid {
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      display: block;
+      margin: 0 auto 1rem;
+    }
+    .simple-list {
+      list-style: disc;
+      margin-left: 1.5rem;
+      padding-left: 0;
+    }
+    .simple-list li { margin-bottom: 0.3rem; }
+    .section-content { margin-bottom: 1.5rem; }
+
+      /* --- IMAGE STYLING --- */
+    img {
+        width:50%;
+        height:auto;
+        box-shadow: 9px 10px var(--primary-blue);
+    }
+
+    /* --- Desktop Sidebar (Sticky) --- */
+    @media (min-width: 768px) {
+      .desktop-sidebar-nav {
+        position: sticky;
+        top: 4rem;
+        height: calc(100vh - 4rem);
+        overflow-y: auto;
+        background-color: var(--light-gray-background);
+        border-right: 1px solid #dee2e6;
+        padding: 1rem;
+        box-sizing: border-box;
+        width: 250px;
+        margin-right: 1.5rem;
+        word-wrap: break-word;
+      }
+    }
+    .desktop-sidebar-nav .nav-link {
+      color: var(--primary-blue);
+      display: block;
+      padding: 0.4rem 0;
+      margin-bottom: 0.1rem;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .desktop-sidebar-nav .nav-link:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+    .desktop-sidebar-nav .nav-link.active {
+      font-weight: bold;
+      color: var(--primary-blue);
+      background-color: #e0f0ff;
+      border-right: 3px solid var(--primary-blue);
+    }
+
+    /* --- Mobile Bottom Navigation --- */
+    .mobile-bottom-nav {
+      background-color: #f8f9fa;
+      border-top: 1px solid #dee2e6;
+      box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+      padding-top: 0.4rem;
+      padding-bottom: 0.4rem;
+    }
+    .mobile-bottom-nav .nav-link {
+      color: var(--primary-blue);
+      text-align: center;
+      padding: 0.4rem;
+      font-size: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .mobile-bottom-nav .nav-link i {
+      font-size: 1.1rem;
+      margin-bottom: 0.15rem;
+    }
+    .mobile-bottom-nav .nav-link.active {
+      color: #007bff;
+      font-weight: bold;
+    }
+    @media (min-width: 768px) {
+      .mobile-bottom-nav { display: none; }
+    }
+
+    /* --- Offcanvas Mobile Sections --- */
+    .offcanvas {
+      background-color: var(--light-gray-background);
+    }
+    .offcanvas-header {
+      color: var(--primary-blue);
+      font-weight: 500;
+      border-bottom: 1px solid #dee2e6;
+      padding: 0.6rem 1rem;
+    }
+    .offcanvas-title { font-size: 1.1rem; }
+    .offcanvas-body {
+      padding-top: 0.6rem;
+      padding-bottom: 0.6rem;
+    }
+    .offcanvas-body .nav-item { margin-bottom: 0; }
+    .offcanvas-body .nav-link {
+      color: var(--primary-blue);
+      display: block;
+      padding: 0.4rem 1rem;
+      border-bottom: 1px solid #dee2e6;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .offcanvas-body .nav-link:hover { background-color: #e9ecef; }
+    .offcanvas-body .nav-item:last-child .nav-link { border-bottom: none; }
+
+    @media (max-width: 575.98px) {
+      body { font-size: 16px; }
+      .mobile-bottom-nav .nav-link { font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">אוריינות מידע</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="information_literacy_1.html">שיעור 1</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_2.html">שיעור 2</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_3.html">שיעור 3</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_4.html">שיעור 4</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_5.html">שיעור 5</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_6.html">שיעור 6</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_7.html">שיעור 7</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_8.html">שיעור 8</a></li>
+          <li class="nav-item"><a class="nav-link" href="information_literacy_9.html">שיעור 9</a></li>
+          <li class="nav-item"><a class="nav-link" href="avodat_siyum.html">עבודת סיום</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>סיכום הרצאה 02 - צריכת מידע</h1>
+                <img src="Image3.jpg" alt="צריכת מידע" class="img-fluid">
+                <p>הרצאה 02 - צריכת מידע:</p>
+                <p>
+                    שלום לכולם, אני קרן, אנחנו בקורס אוריינות מידע, והיום אנחנו נדבר על הנושא של צריכת מידע. אוקיי, כשאנחנו
+                    מדברים על אוריינות מידע, אנחנו רוצים להתחיל מהשאלה איך אנחנו בכלל צריכים לצרוך מידע. המטרה שלנו צריכה תמיד
+                    להיות לצרוך את המידע בצורה שהיא כמה שיותר ממוקדת, אחראית וביקורתית. בואו נתמקד רגע במילים האלה. צריכת מידע
+                    ממוקדת, כי ברור לנו שיש מקומות שמחזיקים המון מידע בתוכם, כמו האינטרנט או ספרייה, אבל זה עדיין לא מספיק. צריך
+                    לדעת איך להתמקד בתוך כל הבלאגן הזה כדי למצוא את המידע הרלוונטי. צריכת מידע אחראית, כי ברור לנו שיש מקורות
+                    לא אמינים. למעשה, ככל שמהפכת המידע התקדמה ולכולנו יש גישה לאינטרנט, לכל אחד יש יכולת להפיץ מידע כאהבת נפשו,
+                    גם מידע לא נכון, בטעות או במודע. אנחנו רוצים להגיע למידע אמין, ואנחנו נרצה בתורנו להעביר מידע באופן אחראי.
+                    וצריכת מידע ביקורתית, כי זה לא רק לקרוא את המידע הרלוונטי ממקור אמין, זה גם לדעת להפעיל חשיבה ביקורתית באופן
+                    שבו אנחנו מסיקים מסקנות מתוך המידע הזה. אז זה מה שאדבר עליו היום, על צריכת מידע.
+                </p>
+
+                <h2 id="section1">כיצד אנו צורכים מידע ביומיום?</h2>
+                <div class="section-content">
+                    <p>
+                        נתחיל מלשאול, ביומיום שלנו, איך אנחנו צורכים מידע חדש שאנחנו מעוניינים לצרוך אותו? אם יש משהו שאני רוצה
+                        לדעת, איפה אני אלך לחפש את התשובה? אם בעבר התשובה לזה הייתה ללכת לספרייה או לשאול מישהו שיודע, היום אם
+                        אני אבקש מכם לגלות משהו, לספר לי משהו חדש שאתם עוד לא יודעים, כנראה שהמקום שאתם תלכו אליו יהיה גוגל או
+                        עולמות הבינה המלאכותית כמו ChatGPT.
+                    </p>
+                </div>
+
+                <h2 id="section2">גוגל טרנדס (Google Trends)</h2>
+                <div class="section-content">
+                  <p>
+                    אנחנו מדברים על גוגל, אנחנו מדברים רגע על השימוש הרחב בו. כשמסתכלים על השימוש של האוכלוסייה כולה בגוגל, זה יכול
+                    ללמד אותנו הרבה מאוד על תהליכים בחברה. אחד הכלים לזה הוא גוגל טרנדס, כלומר מגמות, והוא מאפשר לנו להבין מה
+                    מעסיק אוכלוסיות שלמות לפי מגמות החיפוש. אז לצורך זה נסתכל על שני גרפים ורק נסביר רגע איך לקרוא אותם. ציר
+                    ה-X למטה זה בעצם הזמן. אנחנו רואים התקדמות לאורך זמן, וציר ה-Y מראה לנו בעצם את כמות החיפושים של מונח מסוים.
+                  </p>
+                  <img src="Image4.jpg" alt="גרפים של גוגל טרנדס" class="img-fluid">
+                  <p>
+                    אז כל גרף הוא בעצם למונח ספציפי, ובגרף למעלה אני רואה מגמה של נושא מסוים שכל שנה נמצא בעלייה מאוד חדה לקראת
+                    ספטמבר, ואז ירידה כמעט מוחלטת. בגרף למטה אנחנו רואים נושא שעלה באופן משמעותי ב-2015, ונשאר די חזק עד 2021.
+                    בשני המקרים האלה, הגרפים מסתכלים רק עד שנת 2022, וכנראה שהגרף הזה היה נראה אחרת לגמרי היום. במקרה הראשון
+                    חיפשנו "דבש", ובמקרה השני "דונלד טראמפ".
+                  </p>
+
+                  <p>
+                    אנחנו יכולים לשים נתונים של מונחים שונים גם על פני אותו גרף. למשל בדוגמה הזאת, יש לנו שלושה קווים ששלושתם
+                    מראים עלייה ביחד, בבת אחת, בתחילת 2020. אפשר לראות שהקו הצהוב לא היה נמוך מדי בהתחלה, אבל הקו הכחול והאדום
+                    היו כמעט לא קיימים. העלייה המשמעותית ביותר שאנחנו רואים זה כמובן הקו הכחול, שאולי ניחשתם, זה הקורונה. הקו
+                    הצהוב זה נטפליקס, הוא היה קיים שם גם קודם, אהבנו אותו עוד לפני, אבל כנראה שהוא התחזק בתקופת הסגרים. והקו
+                    האדום זה זום, בעצם נכנס לחיים שלנו בבת אחת, ובהדרגה חזר ונהיה פחות משמעותי.
+                 </p>
+                  <p>
+                    אז למעשה גוגל טרנדס מאפשר לנו לזהות ממש מגמות חברתיות ולעקוב אחרי חיפושים. אפשר לחתוך אותו לפי נקודות שונות
+                    בזמן, לפי אזורים ודמוגרפיות, ואני מזמינה אתכם להתנסות בו בעצמכם ולחפש כל מיני דברים מעניינים.
+                  </p>
+                </div>
+
+              <h2 id="section3">איך רכשנו את הידע שכבר יש לנו?</h2>
+                <div class="section-content">
+                  <p>
+                    אבל בואו נצא רגע מגוגל, נחשוב שנייה על הדברים שאתם כבר יודעים. למשל, בערב חג יש יותר פקקים, מסכימים? נראה לי
+                    שכולכם יכולים להגיד שכנראה שכן. הצבע של הפינגווינים הוא שחור ולבן, דרווין הוא אבי תורת האבולוציה. איפה למדנו
+                    את הדברים האלה? מישהו לימד אותנו את זה? מאיפה צברנו וגיבשנו את כל הידע הזה?
+                  </p>
+                </div>
+
+                <h2 id="section4">דרכים לרכישת ידע</h2>
+                <div class="section-content">
+                    <p>
+                        אנחנו בעצם נדבר עכשיו על דרכים שונות שבהן בני אדם רוכשים ידע על העולם. יש הרבה מאוד דרכים ואנחנו נתמקד
+                        בחמש: שיטת הדבקות, הסמכות, השיטה האינטואיטיבית, השיטה האמפירית והשיטה המדעית.
+                    </p>
+                  <img src="Image5.jpg" alt="דרכים לרכישת ידע" class="img-fluid">
+
+                    <h3 id="section4_1">שיטת הדבקות (Tenacity)</h3>
+                    <p>
+                        נתחיל משיטת הדבקות. הרעיון פה זה שבני אדם נוטים לדבוק במידע שכבר קיים אצלם, מבלי להטיל בו ספק, מבלי לבקר
+                        אותו, ומבלי לבחון מידע נוסף. למשל, האמונה שאם חתול שחור עבר בדרכנו, זה מביא למזל רע. הבעיה בזה, היא
+                        שהאינפורמציה היא לא בהכרח נכונה ואין בחינה של המידע שאנחנו מסתמכים עליו.
+                    </p>
+
+                    <h3 id="section4_2">שיטת הסמכות (Authority)</h3>
+                    <p>
+                        שיטת הסמכות, היא שיטה שאומרת שיש מקור סמכות, וממנו אנחנו שואבים את המידע, מבלי לבדוק אותו בעצמנו. למשל,
+                        אני סומכת על מה שכתוב בעיתון, או על מה שאמר לי הרופא או הפסיכולוג, וזה מקור רוב הידע שלנו. הבעיה בזה, היא
+                        שאנחנו נותנים כוח רב למקור הסמכות, גם במקרים שבהם הסמכות לא קשורה לידע, בלי לבדוק אם הסמכות היא אמיתית.
+                        ככה למשל, אנחנו יכולים לראות רופאים מתבטאים בנושאים פוליטיים, או פוליטיקאים מתבטאים בנושאים של רפואה.
+                    </p>
+
+                    <h3 id="section4_3">השיטה האינטואיטיבית</h3>
+                    <p>
+                        השיטה הבאה שנדבר עליה, היא השיטה האינטואיטיבית. אנחנו בעצם מקבלים אינפורמציה מסוימת כנכונה, כי היא מתאימה
+                        לשכל הישר, או תואמת את תחושת הבטן שלנו. הבעיה בזה, היא שאנחנו מושפעים מהטיות קוגניטיביות. כלומר, אנחנו
+                        נותנים משקל יתר למה שמוכר לנו מהסביבה הפוליטית הקרובה אלינו, אנחנו מושפעים מהציפייה שלנו, ואנחנו מחפשים
+                        תבניות מוכרות להישען עליהן.
+                    </p>
+
+                  <h3 id="section4_4">השיטה האמפירית</h3>
+                    <p>
+                        השיטה הבאה, היא השיטה האמפירית. היא בעצם מדברת על רכישת ידע דרך תצפיות על העולם, ועל הסביבה שלנו, באמצעות
+                        החושים, באמצעות ההתנסות האישית שלנו. הבעיה בזה, היא שהחושים שלנו יכולים לפעמים להטעות אותנו, ולא כל מידע
+                        נגיש באמצעות התנסות אישית, וצפייה ישירה.
+                    </p>
+
+                  <h3 id="section4_5">השיטה המדעית</h3>
+                    <p>
+                        השיטה המדעית, יכולה להתבסס על כל השיטות שדיברנו עליהן בהעלאת רעיונות ופיתוח תיאוריות, אבל היא תתבסס על
+                        בחינה של היפותזות בתנאים מבוקרים. תנאים מבוקרים, כלומר, בשליטה. כמובן שגם השיטה המדעית, לא חפה מבעיות
+                        והטיות שצריך לשים לב אליהן, ובהמשך הקורס, אנחנו נרחיב את הדיון עליה.
+                    </p>
+                </div>
+
+              <h2 id="section5">חיפוש מידע באינטרנט</h2>
+                <div class="section-content">
+                <p>יש הרבה מאוד מקורות מידע שניתן לחשוב עליהם, חלקם רחבים וכלליים, חלקם ממוקדים לנושא מסוים. יש הרבה חשיבות
+                    לחיפוש מקורות אמינים, אבל אנחנו נדבר רגע על הצד הטכני של חיפוש המידע.</p>
+                </div>
+
+              <h2 id="section6">חיפושים מתקדמים בגוגל</h2>
+                <div class="section-content">
+                    <p>
+                        בגוגל יש כל מיני שיטות קטנות וכלים שעוזרים לנו לחפש בצורה יעילה יותר. למשל, כשאנחנו משתמשים במילה AND
+                        באנגלית, היא אומרת "גם וגם", כלומר אנחנו רוצים מקורות מידע שיש בהם את המילים "מדיה חברתית" וגם את המילה
+                        "בריאות". אם אני משתמשת במילה OR, אז אני מוכנה לוותר על אחד משני המונחים, אבל לפחות אחד מהם צריך להיות נוכח.
+                        אז אני כותבת "מדיה חברתית OR רשתות חברתיות". ולפחות אחד מהמונחים האלה חייב להיות בתוצאות החיפוש שלי.
+                    </p>
+                    <p>
+                        המילה NOT היא בעצם מילה שמאפשרת לי להגיד אני לא מעוניינת בנוכחות של מילה מסוימת. למשל, אני מאוד מעוניינת
+                        לחקור מדיה חברתית, אבל אני לא רוצה לדבר על פייסבוק. נגיד, דיברו כבר מספיק על פייסבוק ואני רוצה בעצם לחפש
+                        מדיה חברתית בלי המילה פייסבוק. אז אני מחפשת "מדיה חברתית" ומשתמשת במילה NOT כדי להוריד חיפושים שכוללים את
+                        המילה "פייסבוק". באותו אופן אני יכולה לחפש גם לפי סוג קובץ, אתר וכדומה, ויש עוד כל מיני שיטות קטנות
+                        לדברים שאפשר ככה לחפש לפי מה שמעניין אתכם.
+                    </p>
+                    <p>
+                      אני מציעה לכם לנסות להשתמש בדברים האלה כשאתם מחפשים מידע לעבודות באקדמיה, הם יכולים מאוד מאוד לשפר את החיפוש
+                      שלכם.
+                    </p>
+                </div>
+              <h2 id="section7">סיכום</h2>
+                <div class="section-content">
+                  <p>
+                    נסכם, בני אדם צורכים מידע בדרכים רבות, הרבה מהן כמו שראינו מבוססות על האינטרנט. חשוב למצוא מקורות אמינים
+                    לצריכת מידע, אבל חשוב לא פחות להסתמך על היכולת שלנו לבדוק את המידע שמגיע אלינו ולשאול אם הוא הגיוני ונכון.
+                    דיברנו היום קצת על איך בני אדם צורכים מידע, ובהמשך הקורס אנחנו נדבר על איך לגשת למידע בצורה ביקורתית. אז
+                    להיום אנחנו סיימנו, שיהיה לכם שבוע טוב, ובהצלחה.
+                  </p>
+                </div>
+            </div>
+
+            <!-- Desktop Sidebar (Sticky) -->
+            <aside class="col-md-4">
+                <nav class="desktop-sidebar-nav" aria-label="Sidebar Navigation">
+                    <h5 class="card-title">ניווט</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link" href="#top">לראש העמוד</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#section1">כיצד אנו צורכים מידע ביומיום?</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#section2">גוגל טרנדס</a></li>
+                      <li class="nav-item"><a class="nav-link" href="#section3">איך רכשנו את הידע שכבר יש לנו?</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#section4">דרכים לרכישת ידע</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#section4_1">שיטת הדבקות</a></li>
+                      <li class="nav-item"><a class="nav-link" href="#section4_2">שיטת הסמכות</a></li>
+                      <li class="nav-item"><a class="nav-link" href="#section4_3">השיטה האינטואיטיבית</a></li>
+                      <li class="nav-item"><a class="nav-link" href="#section4_4">השיטה האמפירית</a></li>
+                      <li class="nav-item"><a class="nav-link" href="#section4_5">השיטה המדעית</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#section5">חיפוש מידע באינטרנט</a></li>
+                      <li class="nav-item"><a class="nav-link" href="#section6">חיפושים מתקדמים בגוגל</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#section7">סיכום</a></li>
+                    </ul>
+                </nav>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="navbar fixed-bottom mobile-bottom-nav">
+        <div class="container-fluid">
+            <div class="row w-100 justify-content-around align-items-center gx-0">
+                <div class="col-4">
+                    <a class="nav-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#mobile-sections-offcanvas"
+                       id="nav-sections">
+                        <i class="bi bi-list-ul"></i>
+                        <span class="nav-label">תוכן</span>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a class="nav-link active" href="#" id="nav-home">
+                        <i class="bi bi-house-door-fill"></i>
+                        <span class="nav-label">ראשי</span>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a class="nav-link" href="avodat_siyum.html" id="nav-final-project">
+                        <i class="bi bi-mortarboard-fill"></i>
+                        <span class="nav-label">עבודת סיום</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Sections Offcanvas -->
+    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="mobile-sections-offcanvas"
+         aria-labelledby="mobile-sections-label">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="mobile-sections-label">תוכן עניינים</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="nav flex-column">
+              <li class="nav-item"><a class="nav-link" href="#section1">כיצד אנו צורכים מידע ביומיום?</a></li>
+              <li class="nav-item"><a class="nav-link" href="#section2">גוגל טרנדס</a></li>
+              <li class="nav-item"><a class="nav-link" href="#section3">איך רכשנו את הידע שכבר יש לנו?</a></li>
+              <li class="nav-item"><a class="nav-link" href="#section4">דרכים לרכישת ידע</a></li>
+                <li class="nav-item"><a class="nav-link" href="#section4_1">שיטת הדבקות</a></li>
+              <li class="nav-item"><a class="nav-link" href="#section4_2">שיטת הסמכות</a></li>
+              <li class="nav-item"><a class="nav-link" href="#section4_3">השיטה האינטואיטיבית</a></li>
+              <li class="nav-item"><a class="nav-link" href="#section4_4">השיטה האמפירית</a></li>
+              <li class="nav-item"><a class="nav-link" href="#section4_5">השיטה המדעית</a></li>
+              <li class="nav-item"><a class="nav-link" href="#section5">חיפוש מידע באינטרנט</a></li>
+              <li class="nav-item"><a class="nav-link" href="#section6">חיפושים מתקדמים בגוגל</a></li>
+              <li class="nav-item"><a class="nav-link" href="#section7">סיכום</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Mobile Bottom Navigation functionality
+            const bottomNavLinks = document.querySelectorAll('.mobile-bottom-nav .nav-link');
+            const sectionsOffcanvas = new bootstrap.Offcanvas(document.getElementById('mobile-sections-offcanvas'));
+            bottomNavLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    if (!this.hasAttribute('data-bs-toggle')) e.preventDefault();
+                    bottomNavLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    if (this.id === 'nav-home') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        sectionsOffcanvas.hide();
+                    }
+                });
+            });
+
+            // Top Navbar scroll shadow effect
+            const topNav = document.querySelector('.navbar');
+            window.addEventListener('scroll', () => {
+                topNav.style.boxShadow = window.pageYOffset > 20 ? '0 2px 8px rgba(0,0,0,0.1)' : 'none';
+            });
+
+            // Close offcanvas when a section link is clicked
+            const offcanvasLinks = document.querySelectorAll('.offcanvas-body .nav-link');
+            offcanvasLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    sectionsOffcanvas.hide();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
