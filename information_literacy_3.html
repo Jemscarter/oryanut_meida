@@ -13,7 +13,7 @@
 
   <style>
     html {
-      scroll-padding-top: 6rem;
+      scroll-padding-top: 5rem;
       /* Adjust this value to match your navbar height */
     }
 
@@ -367,7 +367,7 @@
   <!-- Top Navbar -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">אוריינות מידע</a>
+      <a class="navbar-brand" id="website-title">אוריינות מידע</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -748,6 +748,7 @@
       // Mobile Bottom Navigation functionality
       const bottomNavLinks = document.querySelectorAll('.mobile-bottom-nav .nav-link');
       const sectionsOffcanvas = new bootstrap.Offcanvas(document.getElementById('mobile-sections-offcanvas'));
+
       bottomNavLinks.forEach(link => {
         link.addEventListener('click', function (e) {
           if (!this.hasAttribute('data-bs-toggle')) e.preventDefault();
@@ -763,6 +764,16 @@
           }
         });
       });
+
+      // New code to trigger the offcanvas when the title is clicked
+      const websiteTitle = document.getElementById('website-title'); // Target the title element
+
+      if (websiteTitle) {
+        websiteTitle.addEventListener('click', function (e) {
+          e.preventDefault(); // Prevent the default link behavior (navigation)
+          sectionsOffcanvas.show(); // Opens the offcanvas menu
+        });
+      }
 
       // Top Navbar scroll shadow effect
       const topNav = document.querySelector('.navbar');
