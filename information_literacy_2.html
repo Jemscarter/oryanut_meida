@@ -123,7 +123,7 @@
     }
 
     /* --- Mobile Navbar Collapse Styles --- */
-    @media (max-width: 767.98px) {
+    @media (max-width: 991px) {
       .navbar-collapse {
         background-color: rgba(0, 51, 102, 0.95);
         padding: 0.5rem 0;
@@ -409,7 +409,7 @@
           <li class="nav-item"><a class="nav-link" href="information_literacy_7.html">שיעור 7</a></li>
           <li class="nav-item"><a class="nav-link" href="information_literacy_8.html">שיעור 8</a></li>
           <li class="nav-item"><a class="nav-link" href="information_literacy_9.html">שיעור 9</a></li>
-          <li class="nav-item"><a class="nav-link" href="avodat_siyum.html">עבודת סיום</a></li>
+          <li class="nav-item"><a class="nav-link" href="final_assignment.html">עבודת סיום</a></li>
         </ul>
       </div>
     </div>
@@ -609,6 +609,22 @@
           </div>
           <img src="הרצאה 02 - צריכת מידע_page-0013.jpg" alt="השיטה האמפירית - תמונות חושים" class="img-fluid">
 
+          <h3 id="section4_4">השיטה האמפירית</h3>
+          <p>
+            השיטה הבאה, היא <span class="highlight">השיטה האמפירית</span>. היא בעצם מדברת על רכישת ידע דרך <span
+              class="highlight">תצפיות על העולם</span>, ועל הסביבה שלנו, באמצעות
+            החושים, באמצעות ההתנסות האישית שלנו. הבעיה בזה, היא ש<span class="highlight">החושים שלנו יכולים לפעמים
+              להטעות אותנו</span>, ולא כל מידע
+            נגיש באמצעות התנסות אישית, וצפייה ישירה.
+          </p>
+          <div class="alert alert-info">
+            <strong>דוגמה:</strong>
+            <p>אם ראינו פעם אחת אדם מבוגר מתקשה בשימוש בטכנולוגיה, אנחנו עלולים להסיק באופן גורף ש"מבוגרים לא מסתדרים עם
+              טכנולוגיה", למרות שזו הכללה לא מדויקת. או, אם נטעם עוגה פעם אחת ולא נאהב אותה, נניח ש"אני לא אוהב עוגות",
+              למרות שאולי יש סוגי עוגות אחרים שכן נאהב.</p>
+          </div>
+          <img src="הרצאה 02 - צריכת מידע_page-0013.jpg" alt="השיטה האמפירית - תמונות חושים" class="img-fluid">
+
           <h3 id="section4_5">השיטה המדעית</h3>
           <p>
             <span class="highlight">השיטה המדעית</span>, יכולה להתבסס על כל השיטות שדיברנו עליהן בהעלאת רעיונות ופיתוח
@@ -744,6 +760,7 @@
   <nav class="navbar fixed-bottom mobile-bottom-nav">
     <div class="container-fluid">
       <div class="row w-100 justify-content-around align-items-center gx-0">
+        <!-- Sections Button -->
         <div class="col-4">
           <a class="nav-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#mobile-sections-offcanvas"
             id="nav-sections">
@@ -751,14 +768,17 @@
             <span class="nav-label">תוכן</span>
           </a>
         </div>
+        <!-- Other Lessons Button -->
         <div class="col-4">
-          <a class="nav-link active" href="#" id="nav-home">
-            <i class="bi bi-house-door-fill"></i>
-            <span class="nav-label">ראשי</span>
+          <a class="nav-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#mobile-lessons-offcanvas"
+            id="nav-lessons">
+            <i class="bi bi-book"></i>
+            <span class="nav-label">תפריט שיעורים</span>
           </a>
         </div>
+        <!-- Final Project Button -->
         <div class="col-4">
-          <a class="nav-link" href="avodat_siyum.html" id="nav-final-project">
+          <a class="nav-link" href="final_assignment.html" id="nav-final-project">
             <i class="bi bi-mortarboard-fill"></i>
             <span class="nav-label">עבודת סיום</span>
           </a>
@@ -792,6 +812,31 @@
       </ul>
     </div>
   </div>
+
+  <!-- Mobile Lessons Offcanvas -->
+  <div class="offcanvas offcanvas-bottom" tabindex="-1" id="mobile-lessons-offcanvas"
+    aria-labelledby="mobile-lessons-label">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="mobile-lessons-label">שיעורים</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="nav flex-column">
+        <!-- Links to other lessons (from top navbar) -->
+        <li class="nav-item"><a class="nav-link" href="index.html">שיעור 1</a></li>
+        <li class="nav-item"><a class="nav-link" href="information_literacy_2.html">שיעור 2</a></li>
+        <li class="nav-item"><a class="nav-link" href="information_literacy_3.html">שיעור 3</a></li>
+        <li class="nav-item"><a class="nav-link" href="information_literacy_4.html">שיעור 4</a></li>
+        <li class="nav-item"><a class="nav-link" href="information_literacy_5.html">שיעור 5</a></li>
+        <li class="nav-item"><a class="nav-link" href="information_literacy_6.html">שיעור 6</a></li>
+        <li class="nav-item"><a class="nav-link" href="information_literacy_7.html">שיעור 7</a></li>
+        <li class="nav-item"><a class="nav-link" href="information_literacy_8.html">שיעור 8</a></li>
+        <li class="nav-item"><a class="nav-link" href="information_literacy_9.html">שיעור 9</a></li>
+        <li class="nav-item"><a class="nav-link" href="final_assignment.html">עבודת סיום</a></li>
+      </ul>
+    </div>
+  </div>
+
   <!-- Bootstrap JS Bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     crossorigin="anonymous"></script>
@@ -800,19 +845,27 @@
       // Mobile Bottom Navigation functionality
       const bottomNavLinks = document.querySelectorAll('.mobile-bottom-nav .nav-link');
       const sectionsOffcanvas = new bootstrap.Offcanvas(document.getElementById('mobile-sections-offcanvas'));
+      const lessonsOffcanvas = new bootstrap.Offcanvas(document.getElementById('mobile-lessons-offcanvas')); // New offcanvas
 
       bottomNavLinks.forEach(link => {
         link.addEventListener('click', function (e) {
           if (!this.hasAttribute('data-bs-toggle')) e.preventDefault();
           bottomNavLinks.forEach(l => l.classList.remove('active'));
           this.classList.add('active');
-          if (this.id === 'nav-home') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            sectionsOffcanvas.hide();
+
+          // Prevent default for the "sections" link, as it only opens the offcanvas
+          if (this.id === 'nav-sections') {
+            e.preventDefault();
+            sectionsOffcanvas.show(); // Explicitly show the offcanvas
           }
-          // Fix for avodat_siyum.html link
+          if (this.id === 'nav-lessons') {
+            e.preventDefault();
+            lessonsOffcanvas.show(); // Explicitly show the offcanvas
+          }
+
+          // Fix for final_assignment.html link
           if (this.id === 'nav-final-project') {
-            window.location.href = 'avodat_siyum.html'; // Directly navigate
+            window.location.href = 'final_assignment.html'; // Directly navigate
           }
         });
       });
@@ -833,11 +886,16 @@
         topNav.style.boxShadow = window.pageYOffset > 20 ? '0 2px 8px rgba(0,0,0,0.1)' : 'none';
       });
 
-      // Close offcanvas when a section link is clicked
+      // Close offcanvas when a section link is clicked (BOTH offcanvas menus)
       const offcanvasLinks = document.querySelectorAll('.offcanvas-body .nav-link');
       offcanvasLinks.forEach(link => {
         link.addEventListener('click', () => {
-          sectionsOffcanvas.hide();
+          // Check which offcanvas is currently shown and hide it.
+          if (sectionsOffcanvas._isShown) {
+            sectionsOffcanvas.hide();
+          } else if (lessonsOffcanvas._isShown) {
+            lessonsOffcanvas.hide();
+          }
         });
       });
     });
