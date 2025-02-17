@@ -245,7 +245,7 @@
     }
 
     /* --- Mobile Bottom Navigation --- */
-.mobile-bottom-nav {
+    .mobile-bottom-nav {
       background-color: #f8f9fa;
       border-top: 1px solid #dee2e6;
       box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
@@ -287,7 +287,7 @@
       }
     }
 
-    
+
 
     /* --- Offcanvas Mobile Sections --- */
     .offcanvas {
@@ -381,7 +381,7 @@
   <!-- Top Navbar -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" id="website-title1">אוריינות מידע</a>
+      <a class="navbar-brand" id="website-title">אוריינות מידע</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -413,7 +413,7 @@
         <p class="lecture-title">הרצאה 03 - מיומנויות אקדמיות</p>
 
         <div id="intro">
-          <h2 class="section-title">מבוא</h2>
+          <h3 class="section-title">מבוא</h3>
           <p class="long-paragraph">
             שלום לכולם, אנחנו בקורס <span class="highlight">אוריינות מידע</span>, אני קרן, והיום אנחנו מדברים
             על הנושא
@@ -927,7 +927,7 @@
         </div>
         <!-- Final Project Button -->
         <div class="col-4">
-          <a class="nav-link" href="final_assignment.html" id="nav-final-project1">
+          <a class="nav-link" href="final_assignment.html" id="nav-final-project">
             <i class="bi bi-mortarboard-fill"></i>
             <span class="nav-label">עבודת סיום</span>
           </a>
@@ -1018,14 +1018,14 @@
             lessonsOffcanvas.show();
           }
 
-          if (this.id === 'nav-final-project1') { // Corrected ID
+          if (this.id === 'nav-final-project') {
             window.location.href = 'final_assignment.html';
           }
         });
       });
 
       // Trigger offcanvas when the title is clicked
-      const websiteTitle = document.getElementById('website-title1'); // Corrected ID
+      const websiteTitle = document.getElementById('website-title');
 
       if (websiteTitle) {
         websiteTitle.addEventListener('click', function (e) {
